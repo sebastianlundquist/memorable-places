@@ -24,7 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import javax.security.auth.callback.PasswordCallback;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
     private GoogleMap mMap;
     LocationManager locationManager;
@@ -64,6 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setOnMapLongClickListener(this);
 
         Intent intent = getIntent();
         if (intent.getIntExtra("placeNumber", 0) == 0) {
@@ -99,5 +100,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.ACCESS_FINE_LOCATION }, 1);
             }
         }
+    }
+
+    @Override
+    public void onMapLongClick(LatLng latLng) {
+        mMap.addMarker(new MarkerOptions().position(latLng).title("Your new memorable place"));
     }
 }
