@@ -31,8 +31,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import javax.security.auth.callback.PasswordCallback;
-
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
     private GoogleMap mMap;
@@ -64,9 +62,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
@@ -85,19 +81,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
 
                 @Override
-                public void onStatusChanged(String s, int i, Bundle bundle) {
-
-                }
+                public void onStatusChanged(String s, int i, Bundle bundle) { }
 
                 @Override
-                public void onProviderEnabled(String s) {
-
-                }
+                public void onProviderEnabled(String s) { }
 
                 @Override
-                public void onProviderDisabled(String s) {
-
-                }
+                public void onProviderDisabled(String s) { }
             };
 
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -164,7 +154,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         catch (Exception e) {
             e.printStackTrace();
         }
-
         Toast.makeText(this, "Location Saved!", Toast.LENGTH_SHORT).show();
     }
 }
